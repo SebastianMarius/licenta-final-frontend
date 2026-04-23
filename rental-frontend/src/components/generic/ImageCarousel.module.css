@@ -1,0 +1,85 @@
+.section {
+   height: 100%;
+  }
+  
+ 
+  
+  .imageContainer {
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 1rem;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+
+  }
+  
+  .image {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    border-radius: 0.75rem;
+    object-fit: cover;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .visible {
+    display: block;
+    animation: fadeIn 0.6s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .navButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: normal;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    padding: 0;
+    line-height: 1;
+    z-index: 1;
+  }
+  
+  .left {
+    left: 1rem;
+  }
+  
+  .right {
+    right: 1rem;
+  }
+  
+  .navButton:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    opacity: 1;
+  }

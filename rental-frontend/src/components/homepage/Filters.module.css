@@ -1,0 +1,79 @@
+.filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+    align-items: center;
+    font-family: 'Outfit', sans-serif;
+    padding: 0px 24px 0px 24px;
+  }
+   
+  /* ── Chip ───────────────────────────────────────── */
+   
+  .chip {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #7a7990;
+    padding: 6px 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.18s, border-color 0.18s, color 0.18s;
+    font-family: 'Outfit', sans-serif;
+    line-height: 1;
+  }
+   
+  .chip:hover:not(.chipOn) {
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #f0eff8;
+  }
+   
+  .chipOn {
+    background: #c8ff57;
+    color: #0a0a0f;
+    border-color: #c8ff57;
+    font-weight: 600;
+  }
+   
+  /* ── Divider between groups ─────────────────────── */
+   
+  .divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 0 2px;
+    flex-shrink: 0;
+  }
+   
+  /* ── Sort buttons ───────────────────────────────── */
+   
+  .sort {
+    margin-left: auto;
+    display: flex;
+    gap: 6px;
+  }
+   
+  .sortBtn {
+    background: none;
+    border: none;
+    color: #7a7990;
+    cursor: pointer;
+    padding: 5px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 400;
+    transition: background 0.15s, color 0.15s;
+    font-family: 'Outfit', sans-serif;
+    line-height: 1;
+  }
+   
+  .sortBtn:hover {
+    color: #f0eff8;
+  }
+   
+  .sortBtnOn {
+    background: #1a1a26;
+    color: #f0eff8;
+  }

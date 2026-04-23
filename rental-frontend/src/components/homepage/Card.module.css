@@ -1,0 +1,249 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@400;500;600&display=swap');
+ 
+.card {
+  background: #12121a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+  display: flex;
+  flex-direction: column;
+}
+ 
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+}
+ 
+/* ── Image ─────────────────────────────────────── */
+ 
+.imgWrapper {
+  height: 170px;
+  background: #1a1a26;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+ 
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+  display: block;
+}
+ 
+.card:hover .img {
+  transform: scale(1.04);
+}
+ 
+.imgPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  opacity: 0.3;
+}
+ 
+/* ── Source badge ───────────────────────────────── */
+ 
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: 'Outfit', sans-serif;
+}
+ 
+.badge_olx {
+  background: rgba(255, 102, 0, 0.13);
+  color: #ff6600;
+  border: 1px solid rgba(255, 102, 0, 0.25);
+}
+ 
+.badge_storia {
+  background: rgba(155, 89, 182, 0.13);
+  color: #cc3399;
+  border: 1px solid rgba(155, 89, 182, 0.25);
+}
+ 
+.badge_publi24 {
+  background: rgba(0, 126, 196, 0.13);
+  color: #57c8ff;
+  border: 1px solid rgba(0, 126, 196, 0.25);
+}
+ 
+.badge_imobiliare {
+  background: rgba(0, 180, 100, 0.13);
+  color: #00e676;
+  border: 1px solid rgba(0, 180, 100, 0.25);
+}
+ 
+/* ── PF badge ───────────────────────────────────── */
+ 
+.pfBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(200, 255, 87, 0.12);
+  border: 1px solid rgba(200, 255, 87, 0.3);
+  color: #c8ff57;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: 'Outfit', sans-serif;
+}
+ 
+/* ── Price tag ──────────────────────────────────── */
+ 
+.priceTag {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f0eff8;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+ 
+.priceVal {
+  color: #c8ff57;
+  font-size: 15px;
+}
+ 
+/* ── Body ───────────────────────────────────────── */
+ 
+.body {
+  padding: 13px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-family: 'Outfit', sans-serif;
+}
+ 
+.title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f0eff8;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0 0 5px;
+}
+ 
+.location {
+  font-size: 11px;
+  color: #7a7990;
+  margin: 0 0 10px;
+}
+ 
+/* ── Tags ───────────────────────────────────────── */
+ 
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0 0 9px;
+}
+ 
+.tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #7a7990;
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+ 
+/* ── Meta ───────────────────────────────────────── */
+ 
+.meta {
+  display: flex;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 9px;
+  margin-top: auto;
+  margin-bottom: 8px;
+}
+ 
+.metaItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+ 
+.metaItem + .metaItem {
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+}
+ 
+.metaVal {
+  font-size: 12px;
+  font-weight: 600;
+  color: #f0eff8;
+}
+ 
+.metaLbl {
+  font-size: 10px;
+  color: #7a7990;
+  font-weight: 400;
+}
+ 
+/* ── Footer ─────────────────────────────────────── */
+ 
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: auto;
+}
+ 
+.time {
+  font-size: 10px;
+  color: #7a7990;
+}
+ 
+.openBtn {
+  background: #c8ff57;
+  color: #0a0a0f;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.04em;
+  transition: opacity 0.15s;
+}
+ 
+.openBtn:hover {
+  opacity: 0.85;
+}

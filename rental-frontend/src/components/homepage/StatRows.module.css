@@ -1,0 +1,36 @@
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    font-family: 'Outfit', sans-serif;
+    padding: 0 24px;
+  }
+   
+  .stat {
+    background: #12121a;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 12px 16px;
+    flex: 1 1 110px;
+    min-width: 110px;
+    box-sizing: border-box;
+  }
+   
+  .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #f0eff8;
+    display: block;
+  }
+   
+  .label {
+    font-size: 11px;
+    color: #7a7990;
+    margin-top: 2px;
+    font-weight: 500;
+    display: block;
+  }
+   

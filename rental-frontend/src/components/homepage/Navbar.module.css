@@ -1,0 +1,53 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .logo {
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: #f0eff8;
+    letter-spacing: -0.02em;
+  }
+  
+  .logo span {
+    color: #c8ff57;
+  }
+  
+  .nav {
+    display: flex;
+    gap: 6px;
+  }
+  
+  .navBtn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #7a7990;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  .navBtn:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #f0eff8;
+  }
+  
+  .active {
+    background: #c8ff57;
+    color: #0a0a0f;
+    border-color: #c8ff57;
+    font-weight: 600;
+  }

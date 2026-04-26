@@ -64,7 +64,6 @@ export default function Card({ listing }) {
     return (
         <div className={styles.card} onClick={handleOpen}>
 
-            {/* ── Image ── */}
             <div className={styles.imgWrapper}>
                 {imageUrls.length ? imageUrls.length == 1 ? (
                     <img
@@ -92,7 +91,6 @@ export default function Card({ listing }) {
                 {isPrivateOwner && <div className={styles.pfBadge}>PF</div>}
             </div>
 
-            {/* ── Body ── */}
             <div className={styles.body}>
                 <p className={styles.title}>{title}</p>
                 <p className={styles.location}>📍 {location}</p>

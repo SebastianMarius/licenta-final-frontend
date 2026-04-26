@@ -10,7 +10,7 @@ export default function StatsRow({ rentings = [] }) {
     const prices = rentings.map(r => parseAmount(r.price)).filter(Boolean);
     const avg = prices.length ? Math.round(prices.reduce((a, b) => a + b, 0) / prices.length) : 0;
     const min = prices.length ? Math.min(...prices) : 0;
-    const platforms = [...new Set(rentings.map(r => r.source))].length;
+    const platforms = [...new Set(rentings.map(renting => renting.source))].length;
 
     const stats = [
         { value: rentings.length, label: 'Total listings' },

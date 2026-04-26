@@ -10,7 +10,7 @@ import StatsRow from "../components/homepage/StatsRow"
 export const HomePage = () => {
     const [query, setQuery] = useState();
     const [rentings, setRentings] = useState();
-    const [view, setView] = useState();
+    const [view, setView] = useState('grid');
 
     useEffect(() => {
         const getRentings = async () => {
@@ -29,7 +29,7 @@ export const HomePage = () => {
     return (
         <>
 
-            <Navbar setView={setView} />
+            <Navbar setView={setView} view={view} />
             <Hero />
             <StatsRow rentings={rentings} />
             <SearchBar query={query} setQuery={setQuery} />

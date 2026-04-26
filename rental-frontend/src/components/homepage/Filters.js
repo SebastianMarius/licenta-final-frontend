@@ -24,14 +24,13 @@ export default function Filters({
     return (
         <div className={styles.filters}>
 
-            {/* Sources */}
-            {SOURCES.map(s => (
+            {SOURCES.map(source => (
                 <button
-                    key={s}
-                    className={`${styles.chip} ${activeSource === s ? styles.chipOn : ''}`}
-                    onClick={() => onSourceChange(s)}
+                    key={source}
+                    className={`${styles.chip} ${activeSource === source ? styles.chipOn : ''}`}
+                    onClick={() => onSourceChange(source)}
                 >
-                    {s === 'All' ? 'All sources' : SRC_LBL[s] || s}
+                    {source === 'All' ? 'All sources' : SRC_LBL[source] || source}
                 </button>
             ))}
 
@@ -50,14 +49,13 @@ export default function Filters({
 
             <div className={styles.divider} />
 
-            {/* Max price */}
-            {PRICES.map(p => (
+            {PRICES.map(price => (
                 <button
-                    key={p}
-                    className={`${styles.chip} ${maxPrice === p ? styles.chipOn : ''}`}
-                    onClick={() => onPriceChange(p)}
+                    key={price}
+                    className={`${styles.chip} ${maxPrice === price ? styles.chipOn : ''}`}
+                    onClick={() => onPriceChange(price)}
                 >
-                    {p === 'Any' ? 'Any price' : `≤${p}€`}
+                    {price === 'Any' ? 'Any price' : `≤${price}€`}
                 </button>
             ))}
 

@@ -1,5 +1,7 @@
+import { useAppContext } from '../context/AppContext';
 import { ImageCarousel } from '../generic/ImageCarousel';
 import styles from './Card.module.css';
+import { timeAgo } from '../../utils';
 
 const sources = { olx: 'OLX', storia: 'Storia', publi24: 'Publi24', imobiliare: 'Imobiliare' };
 
@@ -21,13 +23,6 @@ function parsePrice(price) {
     };
 }
 
-function timeAgo(dateStr) {
-    const diff = Date.now() - new Date(dateStr).getTime();
-    const hour = Math.floor(diff / 36e5);
-    if (hour < 1) return '<1h';
-    if (hour < 24) return `${hour}h`;
-    return `${Math.floor(hour / 24)}d`;
-}
 
 export default function Card({ listing }) {
     const {
@@ -47,6 +42,8 @@ export default function Card({ listing }) {
     } = listing;
 
     const { amount, currency } = parsePrice(price);
+    const { setRentingDetails, setShouldShowDetailsModal } = useAppContext();
+
     const rooms = roomsNumber ? (ROOMS_MAP[roomsNumber] ?? roomsNumber) : null;
     const floor = floorNumber ? (FLOOR_MAP[floorNumber] ?? floorNumber) : null;
 
@@ -54,9 +51,15 @@ export default function Card({ listing }) {
         .map(tag => (typeof tag === 'object' ? tag.value : tag))
         .filter(Boolean);
 
-    const handleOpen = (e) => {
+    const handleOpen = async (e) => {
+        setShouldShowDetailsModal(true);
         e?.stopPropagation();
-        window.open(url, '_blank');
+        console.log(listing.prismaId);
+        const fetchListingPage = await fetch(`http://localhost:9000/renting-page/${listing.prismaId}`)
+        const asJson = await fetchListingPage.json();
+        setRentingDetails(asJson);
+        console.log(asJson);
+        // window.open(url, '_blank');
     };
 
     const hasMeta = squareMeters || rooms || floor != null;
@@ -65,7 +68,7 @@ export default function Card({ listing }) {
         <div className={styles.card} onClick={handleOpen}>
 
             <div className={styles.imgWrapper}>
-                {imageUrls.length ? imageUrls.length == 1 ? (
+                {imageUrls.length ? imageUrls.length === 1 ? (
                     <img
                         src={imageUrls[0]}
                         alt={title}

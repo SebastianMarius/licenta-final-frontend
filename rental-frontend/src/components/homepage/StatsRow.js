@@ -7,6 +7,8 @@ function parseAmount(price) {
 }
 
 export default function StatsRow({ rentings = [] }) {
+    if (rentings.length < 1) return
+    console.log(rentings);
     const prices = rentings?.map(r => parseAmount(r.price)).filter(Boolean);
     const avg = prices.length ? Math.round(prices.reduce((a, b) => a + b, 0) / prices.length) : 0;
     const min = prices.length ? Math.min(...prices) : 0;

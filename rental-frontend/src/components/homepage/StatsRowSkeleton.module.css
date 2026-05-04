@@ -1,0 +1,60 @@
+@keyframes shimmer {
+    0%   { background-position: -400px 0; }
+    100% { background-position:  400px 0; }
+}
+ 
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    padding: 0 24px;
+}
+ 
+.stat {
+    background: #12121a;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 12px 16px;
+    flex: 1 1 110px;
+    min-width: 110px;
+    box-sizing: border-box;
+}
+ 
+/* shared shimmer block */
+.value,
+.label {
+    display: block;
+    border-radius: 5px;
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.03) 0px,
+        rgba(255, 255, 255, 0.08) 40%,
+        rgba(255, 255, 255, 0.03) 80%
+    );
+    background-size: 400px 100%;
+    animation: shimmer 1.6s ease-in-out infinite;
+}
+ 
+.value {
+    height: 26px;
+    margin-bottom: 7px;
+    /* width is set inline per stat so each bar is a different length */
+}
+ 
+.label {
+    width: 70%;
+    height: 10px;
+    animation-delay: 0.08s;
+}
+ 
+/* stagger each card's shimmer slightly */
+.stat:nth-child(1) .value  { animation-delay: 0s;    }
+.stat:nth-child(1) .label  { animation-delay: 0.08s; }
+.stat:nth-child(2) .value  { animation-delay: 0.12s; }
+.stat:nth-child(2) .label  { animation-delay: 0.2s;  }
+.stat:nth-child(3) .value  { animation-delay: 0.24s; }
+.stat:nth-child(3) .label  { animation-delay: 0.32s; }
+.stat:nth-child(4) .value  { animation-delay: 0.36s; }
+.stat:nth-child(4) .label  { animation-delay: 0.44s; }

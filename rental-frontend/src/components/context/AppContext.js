@@ -8,6 +8,9 @@ export const AppProvider = ({ children }) => {
 
     const [city, setCity] = useState('cluj-napoca');
     const [rentings, setRentings] = useState();
+    const [rentingDetails, setRentingDetails] = useState();
+    const [shouldShowDetailsModal, setShouldShowDetailsModal] = useState(false);
+    const [savedRentings, setSavedRentings] = useState([]);
     const [filters, setFilters] = useState({
         rentSource: filtersFromLocalSt.rentSource ?? "All",
         maxPrice: filtersFromLocalSt.maxPrice ?? 'Any',
@@ -22,8 +25,14 @@ export const AppProvider = ({ children }) => {
         rentings,
         setRentings,
         city,
-        setCity
-    }), [filters, rentings, city]);
+        setCity,
+        rentingDetails,
+        setRentingDetails,
+        savedRentings,
+        setSavedRentings,
+        shouldShowDetailsModal,
+        setShouldShowDetailsModal
+    }), [filters, rentings, city, rentingDetails, savedRentings, shouldShowDetailsModal]);
 
     return (
         <AppContext.Provider value={value}>

@@ -1,0 +1,349 @@
+:root {
+    --bg:#0a0a0f;
+    --sur:#12121a;
+    --sur2:#1a1a26;
+    --bd:#ffffff10;
+    --bd2:#ffffff1e;
+    --ac:#c8ff57;
+    --tx:#f0eff8;
+    --mu:#6b6a7e;
+}
+
+/* =======================
+   OVERLAY
+======================= */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5,5,8,0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* =======================
+   MODAL
+======================= */
+.modal {
+    width: 820px;
+    max-height: 90vh;
+    background: var(--sur);
+    border: 1px solid var(--bd2);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    color: var(--tx);
+    font-family: 'Outfit', sans-serif;
+}
+
+/* =======================
+   CLOSE BUTTON
+======================= */
+.closeBtn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(10,10,15,.7);
+    border: 1px solid var(--bd2);
+    color: var(--tx);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+}
+
+/* =======================
+   CAROUSEL
+======================= */
+.carousel {
+    height: 500px;
+    background: var(--sur2);
+    position: relative;
+    overflow: hidden;
+}
+
+.carouselMulti .image {
+    animation: carouselFade 320ms ease-out;
+}
+
+@keyframes carouselFade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    user-select: none;
+}
+
+.noImg {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--mu);
+    letter-spacing: 0.02em;
+}
+
+.carouselNav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--bd2);
+    background: rgba(10, 10, 15, 0.55);
+    color: var(--tx);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.carouselNav:hover {
+    background: rgba(10, 10, 15, 0.75);
+    border-color: rgba(200, 255, 87, 0.35);
+    color: var(--ac);
+}
+
+.carouselNav:focus-visible {
+    outline: 2px solid var(--ac);
+    outline-offset: 2px;
+}
+
+.carouselNavPrev {
+    left: 12px;
+}
+
+.carouselNavNext {
+    right: 12px;
+}
+
+.carouselDots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(10, 10, 15, 0.45);
+    border: 1px solid var(--bd);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.carouselDot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.carouselDot:hover {
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.carouselDotActive {
+    background: var(--ac);
+    transform: scale(1.15);
+}
+
+/* =======================
+   BODY LAYOUT
+======================= */
+.body {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+}
+
+/* =======================
+   LEFT PANEL
+======================= */
+.left {
+    padding: 20px 22px;
+    border-right: 1px solid var(--bd);
+}
+
+.left h2 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.location {
+    font-size: 13px;
+    color: var(--mu);
+    margin-bottom: 14px;
+}
+
+/* =======================
+   STATS
+======================= */
+.stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+
+.stats span {
+    background: var(--sur2);
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--bd);
+    color: var(--tx);
+}
+
+/* =======================
+   DESCRIPTION
+======================= */
+.desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--mu);
+    background: var(--bg);
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--bd);
+}
+
+/* =======================
+   DATE INFO
+======================= */
+.dateInfo {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--mu);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--bd2);
+}
+
+/* =======================
+   RIGHT PANEL
+======================= */
+.right {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* PRICE */
+.price {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--ac);
+}
+
+.perSqm {
+    font-size: 13px;
+    color: var(--mu);
+}
+
+/* =======================
+   PRIMARY CTA BUTTON
+======================= */
+.btn {
+    display: block;
+    background: var(--ac);
+    padding: 8px 12px;
+    text-align: center;
+    color: #0a0a0f;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity .2s ease;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+/* =======================
+   SAVE BUTTON (IMPORTANT UX STATES)
+======================= */
+.saveBtn {
+    width: 100%;
+    padding: 8px 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    border-radius: 10px;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: all 0.18s ease;
+
+    /* FORCE TRUE GRAY NEUTRAL STATE */
+    background: rgba(18,18,26,0.6); /* same as --sur, slightly lifted */
+    border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(107,106,126,0.75);
+
+    opacity: 1;
+    
+}
+
+.saveBtn svg {
+    opacity: 0.7;
+    transition: opacity 0.18s ease;
+}
+
+/* HOVER STATE */
+.saveBtn:hover {
+    border-color: rgba(200,255,87,0.35);
+    color: var(--ac);
+    background: rgba(200,255,87,0.06);
+    opacity: 1;
+}
+
+.saveBtn:hover svg {
+    opacity: 1;
+}
+
+/* SAVED STATE */
+.saved {
+    border-color: rgba(200,255,87,0.35);
+    color: var(--ac);
+    background: rgba(200,255,87,0.08);
+    opacity: 1;
+}
+
+.buttonsWrapper {
+    margin-top: auto;
+}

@@ -14,11 +14,12 @@ const SORTS = [
 ];
 const FORMA = ['Any', 'Proprietar']
 
-export default function Filters({ }) {
+export default function Filters({ setLoadingCards }) {
 
     const { filters, setFilters, setRentings, city } = useAppContext();
 
     const genericFilterUpdate = async (field, value) => {
+        setLoadingCards(true);
         const newFilters = { ...filters, [field]: value };
         localStorage.setItem('filters', JSON.stringify(newFilters))
         setFilters(newFilters);
@@ -52,6 +53,7 @@ export default function Filters({ }) {
         const data = await res.json();
         console.log('ce pln', data)
         setRentings(data);
+        setLoadingCards(false);
     };
 
     return (

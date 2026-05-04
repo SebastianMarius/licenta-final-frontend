@@ -6,12 +6,16 @@ import CardsWrapper from "../components/homepage/CardsWrapper"
 import Filters from "../components/homepage/Filters"
 import StatsRow from "../components/homepage/StatsRow"
 import { useAppContext } from "../components/context/AppContext"
-
+import { DetailViewModal } from "../modals/DetailViewModal"
+import { DetailViewModalSkeleton } from "../modals/DetailViewSkeleton"
+import CardSkeleton from "../components/homepage/CardSkeleton"
+import wrappedStyle from "../components/homepage/CardsWrapper.module.css"
+import StatsRowSkeleton from "../components/homepage/StatsRowSkeleton"
 
 export const HomePage = () => {
     const [view, setView] = useState('grid');
-
-    const { rentings, setRentings, city } = useAppContext();
+    const [loadingCards, setLoadingCards] = useState(true);
+    const { rentings, setRentings, city, rentingDetails, shouldShowDetailsModal } = useAppContext();
 
     useEffect(() => {
         const getRentings = async () => {
@@ -32,12 +36,14 @@ export const HomePage = () => {
                 const settingsAsParams = new URLSearchParams(parsedSettings).toString();
 
                 const fetchRentings = await fetch(`http://localhost:9000/listings/${city}?${settingsAsParams}`)
-                const rents = fetchRentings.json();
+                const rents = await fetchRentings.json();
                 setRentings(rents);
+                setLoadingCards(false);
             } else {
                 const fetchRentings = await fetch(`http://localhost:9000/listings/${city}?forma=proprietar&maxPrice=450`);
                 const rentingsJson = await fetchRentings.json();
                 setRentings(rentingsJson);
+                setLoadingCards(false);
             }
 
         }
@@ -49,10 +55,27 @@ export const HomePage = () => {
 
             <Navbar setView={setView} view={view} />
             <Hero />
-            <StatsRow rentings={rentings} />
+            {loadingCards
+                ? <StatsRowSkeleton />
+                : rentings && <StatsRow rentings={rentings} />
+            }
             <SearchBar />
-            <Filters />
-            {rentings && <CardsWrapper rentings={rentings} />}
+            <Filters setLoadingCards={setLoadingCards} />
+
+            {loadingCards ? (
+                <div className={wrappedStyle.grid}>
+                    {Array.from({ length: 6 }).map((_, i) => (
+                        <CardSkeleton key={i} />
+                    ))}
+                </div>
+            ) : (
+                rentings && <CardsWrapper rentings={rentings} />
+            )}
+
+            {shouldShowDetailsModal &&
+                (rentingDetails ?
+                    <DetailViewModal rentingDetails={rentingDetails} /> : <DetailViewModalSkeleton />)}
+
         </>
     )
 }

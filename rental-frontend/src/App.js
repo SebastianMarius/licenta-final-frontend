@@ -1,21 +1,53 @@
-import logo from './logo.svg';
 import './App.css';
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from './pages/HomePage';
-import { AppProvider } from './components/context/AppContext';
+import { MyListingsPage } from './pages/MyListingsPage';
+import { ResetPasswordPage } from './pages/ResetPasswordPage';
+import { AppProvider, useAppContext } from './components/context/AppContext';
+import { LoginModal } from './modals/LoginModal';
+import { PrivateRoute, ResetPasswordRoute } from './components/RouteGuards';
 
-
-function App() {
+function RouterOutlet() {
+  const { authModalOpen, authModalFlow, closeAuthModal } = useAppContext();
   return (
-    <HashRouter>
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/my-listings"
+          element={
+            <PrivateRoute>
+              <MyListingsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/reset-password"
+          element={
+            <ResetPasswordRoute>
+              <ResetPasswordPage />
+            </ResetPasswordRoute>
+          }
+        />
+      </Routes>
+      {authModalOpen && (
+        <LoginModal onClose={closeAuthModal} initialFlow={authModalFlow} />
+      )}
+    </>
+  );
+}
+
+export default function App() {
+  const basename =
+    process.env.NODE_ENV === 'production'
+      ? (process.env.PUBLIC_URL || '').replace(/\/$/, '') || undefined
+      : undefined;
+
+  return (
+    <HashRouter basename={basename}>
       <AppProvider>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          {/* <Route path="/listing/:id" element={<Listing />} /> */}
-        </Routes>
+        <RouterOutlet />
       </AppProvider>
     </HashRouter>
   );
 }
-
-export default App;

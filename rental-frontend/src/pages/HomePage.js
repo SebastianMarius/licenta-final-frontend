@@ -11,10 +11,9 @@ import { DetailViewModalSkeleton } from "../modals/DetailViewSkeleton"
 import CardSkeleton from "../components/homepage/CardSkeleton"
 import wrappedStyle from "../components/homepage/CardsWrapper.module.css"
 import StatsRowSkeleton from "../components/homepage/StatsRowSkeleton"
-
 export const HomePage = () => {
-    const [view, setView] = useState('grid');
     const [loadingCards, setLoadingCards] = useState(true);
+
     const { rentings, setRentings, city, rentingDetails, shouldShowDetailsModal } = useAppContext();
 
     useEffect(() => {
@@ -53,7 +52,7 @@ export const HomePage = () => {
     return (
         <>
 
-            <Navbar setView={setView} view={view} />
+            <Navbar />
             <Hero />
             {loadingCards
                 ? <StatsRowSkeleton />

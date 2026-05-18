@@ -2,7 +2,7 @@ import { useAppContext } from "../context/AppContext";
 import styles from "./SearchBar.module.css";
 
 export default function SearchBar({ query, setQuery }) {
-    const { city, setCity } = useAppContext();
+    const { setCity } = useAppContext();
 
     const handleKeyDown = (e) => {
         const pressedKey = e.key;

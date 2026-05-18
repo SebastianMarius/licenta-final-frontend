@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styles from './Filters.module.css';
 import { useAppContext } from '../context/AppContext';
 
@@ -51,7 +50,6 @@ export default function Filters({ setLoadingCards }) {
         );
 
         const data = await res.json();
-        console.log('ce pln', data)
         setRentings(data);
         setLoadingCards(false);
     };

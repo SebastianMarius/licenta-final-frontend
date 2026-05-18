@@ -2,10 +2,12 @@ import { useCallback, useEffect, useState } from 'react';
 import styles from './DetailViewModal.module.css';
 import { useAppContext } from '../components/context/AppContext';
 import { formateDate, timeAgo } from '../utils';
+import { AssistantRecommendationsModal } from './AssistantRecommendationsModal';
 
 export const DetailViewModal = ({ rentingDetails }) => {
-    const { setRentingDetails, savedRentings, setSavedRentings, setShouldShowDetailsModal } = useAppContext();
+    const { setRentingDetails, savedRentings, setSavedRentings, setShouldShowDetailsModal, isAuthenticated } = useAppContext();
     const [slideIndex, setSlideIndex] = useState(0);
+    const [showAssistant, setShowAssistant] = useState(false);
 
     const imageUrls = rentingDetails?.imageUrls ?? [];
     const hasImages = imageUrls.length > 0;
@@ -24,6 +26,11 @@ export const DetailViewModal = ({ rentingDetails }) => {
         setSlideIndex((index) => (index >= lastIdx ? 0 : index + 1));
     }, [lastIdx]);
 
+    const handleClose = useCallback(() => {
+        setRentingDetails(null);
+        setShouldShowDetailsModal(false);
+    }, [setRentingDetails, setShouldShowDetailsModal]);
+
     useEffect(() => {
         if (!isCarousel) return;
         const onKey = (e) => {
@@ -34,7 +41,7 @@ export const DetailViewModal = ({ rentingDetails }) => {
         window.addEventListener('keydown', onKey);
 
         return () => window.removeEventListener('keydown', onKey);
-    }, [isCarousel, goPrev, goNext]);
+    }, [isCarousel, goPrev, goNext, handleClose]);
 
     if (!rentingDetails) return null;
 
@@ -61,7 +68,6 @@ export const DetailViewModal = ({ rentingDetails }) => {
         address,
         city,
         createdAt,
-        source,
         url,
         roomsNumber
     } = rentingDetails;
@@ -78,7 +84,14 @@ export const DetailViewModal = ({ rentingDetails }) => {
             ? Math.round(price / (areaSqm || squareMeters))
             : null;
 
-    const handleClose = () => { setRentingDetails(null); setShouldShowDetailsModal(false); };
+    if (showAssistant) {
+        return (
+            <AssistantRecommendationsModal
+                rentingDetails={rentingDetails}
+                onBack={() => setShowAssistant(false)}
+            />
+        );
+    }
 
     return (
         <div className={styles.overlay}>
@@ -207,6 +220,7 @@ export const DetailViewModal = ({ rentingDetails }) => {
                         )}
 
                         <div className={styles.buttonsWrapper}>
+
                             <button
                                 className={`${styles.saveBtn} ${isSaved ? styles.saved : ''}`}
                                 onClick={() => {
@@ -225,9 +239,33 @@ export const DetailViewModal = ({ rentingDetails }) => {
                                 >
                                     <path d="M8 13.5l-6-5.5a3.5 3.5 0 015-4.9l1 1 1-1a3.5 3.5 0 015 4.9L8 13.5z" />
                                 </svg>
-                                <span>{isSaved ? 'Salvat ✓' : 'Salvează anunțul'} </span>
+                                <span>{isSaved ? 'Salvat ✓' : 'Salveaza anuntul'} </span>
                             </button>
-                            <a href={url} target="_blank" className={styles.btn}>
+
+                            {isAuthenticated && (
+                                <button
+                                    type="button"
+                                    className={styles.assistantBtn}
+                                    aria-label="Ask assistant for recommendations"
+                                    onClick={() => setShowAssistant(true)}
+                                >
+                                    <svg
+                                        width="12"
+                                        height="12"
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        aria-hidden
+                                    >
+                                        <rect x="3" y="4.5" width="10" height="9" rx="2" />
+                                        <circle cx="6.5" cy="9" r="1" fill="currentColor" stroke="none" />
+                                        <circle cx="9.5" cy="9" r="1" fill="currentColor" stroke="none" />
+                                    </svg>
+                                    <span>Ask assistant for recommendations</span>
+                                </button>
+                            )}
+                            <a href={url} target="_blank" rel="noreferrer" className={styles.btn}>
                                 View source →
                             </a>
                         </div>

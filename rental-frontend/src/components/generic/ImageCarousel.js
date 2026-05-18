@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./ImageCarousel.module.css";
 
 export const ImageCarousel = ({ images = [] }) => {
@@ -36,6 +36,7 @@ export const ImageCarousel = ({ images = [] }) => {
                     <img
                         key={image}
                         src={image}
+                        alt=""
                         className={`${styles.image} ${currentImageIndex === index
                             ? styles.visible
                             : styles.hidden

@@ -47,7 +47,7 @@ export const HomePage = () => {
 
         }
         getRentings();
-    }, [city])
+    }, [city, setRentings])
 
     return (
         <>

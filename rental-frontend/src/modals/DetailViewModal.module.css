@@ -283,7 +283,6 @@
     font-weight: 700;
     text-decoration: none;
     transition: opacity .2s ease;
-    margin-top: 10px;
 }
 
 .btn:hover {
@@ -346,4 +345,431 @@
 
 .buttonsWrapper {
     margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Assistant CTA — distinct from save */
+.assistantBtn {
+    width: 100%;
+    padding: 9px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition:
+        border-color 0.18s ease,
+        background 0.18s ease,
+        color 0.18s ease;
+    background: rgba(200, 255, 87, 0.06);
+    border: 1px solid rgba(200, 255, 87, 0.22);
+    color: var(--ac);
+}
+
+.assistantBtn svg {
+    flex-shrink: 0;
+    opacity: 0.92;
+}
+
+.assistantBtn:hover {
+    background: rgba(200, 255, 87, 0.12);
+    border-color: rgba(200, 255, 87, 0.45);
+    color: var(--ac);
+}
+
+.assistantBtn:focus-visible {
+    outline: 2px solid var(--ac);
+    outline-offset: 2px;
+}
+
+/* =======================
+   BACK BUTTON (Assistant modal -> Listing modal)
+======================= */
+.backBtn {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(10, 10, 15, .7);
+    border: 1px solid var(--bd2);
+    color: var(--tx);
+    height: 34px;
+    padding: 0 12px 0 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.backBtn:hover {
+    background: rgba(10, 10, 15, .9);
+    border-color: rgba(200, 255, 87, 0.35);
+    color: var(--ac);
+}
+
+.backBtn:focus-visible {
+    outline: 2px solid var(--ac);
+    outline-offset: 2px;
+}
+
+/* =======================
+   ASSISTANT MODAL CONTENT
+======================= */
+.assistantHeader {
+    padding: 64px 24px 16px;
+    border-bottom: 1px solid var(--bd);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.assistantIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(200, 255, 87, 0.10);
+    border: 1px solid rgba(200, 255, 87, 0.25);
+    color: var(--ac);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.assistantTitleGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.assistantTitle {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--tx);
+    margin: 0;
+}
+
+.assistantSubtitle {
+    font-size: 12px;
+    color: var(--mu);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.assistantBody {
+    padding: 20px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: calc(90vh - 130px);
+    overflow-y: auto;
+}
+
+.assistantPlaceholder {
+    background: var(--bg);
+    border: 1px dashed var(--bd2);
+    border-radius: 12px;
+    padding: 20px;
+    color: var(--mu);
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.assistantPlaceholderTitle {
+    color: var(--tx);
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+/* =======================
+   RECOMMENDATION LIST
+======================= */
+.recList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.recCard {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 14px;
+    padding: 12px;
+    background: var(--sur2);
+    border: 1px solid var(--bd);
+    border-radius: 14px;
+    transition: border-color 0.18s ease, background 0.18s ease;
+}
+
+.recCard:hover {
+    border-color: rgba(200, 255, 87, 0.28);
+    background: rgba(200, 255, 87, 0.04);
+}
+
+.recThumb {
+    position: relative;
+    width: 140px;
+    height: 110px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg);
+    border: 1px solid var(--bd);
+}
+
+.recThumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.recThumbFallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: var(--mu);
+}
+
+.recScore {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    min-width: 30px;
+    height: 22px;
+    padding: 0 7px;
+    border-radius: 999px;
+    background: rgba(10, 10, 15, 0.78);
+    border: 1px solid rgba(200, 255, 87, 0.45);
+    color: var(--ac);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.recBody {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.recTitleRow {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.recTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--tx);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.recPrice {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--ac);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.recLocation {
+    font-size: 12px;
+    color: var(--mu);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.recMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.recMeta span {
+    font-size: 11px;
+    color: var(--tx);
+    background: var(--bg);
+    border: 1px solid var(--bd);
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-transform: capitalize;
+}
+
+.recReasons {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.recReasons li {
+    position: relative;
+    padding-left: 12px;
+    font-size: 12px;
+    color: var(--mu);
+    line-height: 1.45;
+}
+
+.recReasons li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 7px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(200, 255, 87, 0.55);
+}
+
+.recActions {
+    margin-top: 6px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.recOpen {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ac);
+    color: #0a0a0f;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.18s ease;
+}
+
+.recOpen:hover {
+    opacity: 0.9;
+}
+
+.recOpenDisabled {
+    background: var(--sur2);
+    color: var(--mu);
+    border: 1px solid var(--bd);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* =======================
+   STATE BLOCKS (error / empty)
+======================= */
+.recState {
+    background: var(--bg);
+    border: 1px dashed var(--bd2);
+    border-radius: 12px;
+    padding: 22px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.recStateTitle {
+    color: var(--tx);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.recStateBody {
+    color: var(--mu);
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 360px;
+}
+
+.recRetry {
+    margin-top: 6px;
+    appearance: none;
+    background: rgba(200, 255, 87, 0.08);
+    color: var(--ac);
+    border: 1px solid rgba(200, 255, 87, 0.35);
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.recRetry:hover {
+    background: rgba(200, 255, 87, 0.16);
+    border-color: rgba(200, 255, 87, 0.55);
+}
+
+/* =======================
+   SKELETON
+======================= */
+.recSkeleton {
+    pointer-events: none;
+}
+
+.recSkeleton .recThumb {
+    background: linear-gradient(90deg, var(--bg) 0%, var(--sur2) 50%, var(--bg) 100%);
+    background-size: 200% 100%;
+    animation: recShimmer 1.4s ease-in-out infinite;
+    border-color: var(--bd);
+}
+
+.skelLine {
+    height: 10px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--bg) 0%, var(--sur2) 50%, var(--bg) 100%);
+    background-size: 200% 100%;
+    animation: recShimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes recShimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
 }

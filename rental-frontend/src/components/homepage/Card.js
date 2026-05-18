@@ -32,7 +32,6 @@ export default function Card({ listing }) {
         imageUrls = [],
         source,
         squareMeters,
-        url,
         date,
         // optional
         roomsNumber,

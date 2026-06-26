@@ -16,14 +16,12 @@ export const DetailViewModalSkeleton = () => {
                     ✕
                 </button>
 
-                {/* IMAGE */}
                 <div className={styles.carousel}>
                     <div className={`${styles.image} ${skeleton.skel}`} />
                 </div>
 
                 <div className={styles.body}>
 
-                    {/* LEFT */}
                     <div className={styles.left}>
                         <div className={`${skeleton.skel} ${skeleton.title}`} />
                         <div className={`${skeleton.skel} ${skeleton.location}`} />
@@ -42,7 +40,6 @@ export const DetailViewModalSkeleton = () => {
                         </div>
                     </div>
 
-                    {/* RIGHT */}
                     <div className={styles.right}>
                         <div className={`${skeleton.skel} ${skeleton.price}`} />
                         <div className={`${skeleton.skel} ${skeleton.perSqm}`} />

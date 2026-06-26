@@ -101,7 +101,6 @@ export const DetailViewModal = ({ rentingDetails }) => {
                     ✕
                 </button>
 
-                {/* IMAGES */}
                 <div
                     className={`${styles.carousel} ${isCarousel ? styles.carouselMulti : ''}`}
                     aria-label={isCarousel ? 'Property photos' : undefined}
@@ -163,28 +162,6 @@ export const DetailViewModal = ({ rentingDetails }) => {
                         <h2>{title}</h2>
                         <p className={styles.location}>📍 {address || city}</p>
 
-                        {/* {hasMeta && (
-                    <div className={styles.meta}>
-                        {squareMeters && (
-                            <div className={styles.metaItem}>
-                                <span className={styles.metaVal}>{squareMeters}</span>
-                                <span className={styles.metaLbl}>m²</span>
-                            </div>
-                        )}
-                        {rooms && (
-                            <div className={styles.metaItem}>
-                                <span className={styles.metaVal}>{rooms}</span>
-                                <span className={styles.metaLbl}>camere</span>
-                            </div>
-                        )}
-                        {floor != null && (
-                            <div className={styles.metaItem}>
-                                <span className={styles.metaVal}>{floor}</span>
-                                <span className={styles.metaLbl}>etaj</span>
-                            </div>
-                        )}
-                    </div>
-                )} */}
 
                         <div className={styles.stats}>
                             <span>{areaSqm || squareMeters || '—'} m²</span>
@@ -196,7 +173,7 @@ export const DetailViewModal = ({ rentingDetails }) => {
                         </p>
 
                         <div className={styles.dateInfo}>
-                            {ago && <span>Publicat {ago}</span>}
+                            {ago && <span>Published {ago}</span>}
 
                             {formattedDate && (
                                 <>
@@ -239,7 +216,7 @@ export const DetailViewModal = ({ rentingDetails }) => {
                                 >
                                     <path d="M8 13.5l-6-5.5a3.5 3.5 0 015-4.9l1 1 1-1a3.5 3.5 0 015 4.9L8 13.5z" />
                                 </svg>
-                                <span>{isSaved ? 'Salvat ✓' : 'Salveaza anuntul'} </span>
+                                <span>{isSaved ? 'Saved ✓' : 'Save listing'} </span>
                             </button>
 
                             {isAuthenticated && (

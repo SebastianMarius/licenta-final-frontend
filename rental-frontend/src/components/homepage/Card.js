@@ -3,7 +3,13 @@ import { ImageCarousel } from '../generic/ImageCarousel';
 import styles from './Card.module.css';
 import { timeAgo } from '../../utils';
 
-const sources = { olx: 'OLX', storia: 'Storia', publi24: 'Publi24', imobiliare: 'Imobiliare' };
+const sources = {
+    olx: 'OLX',
+    storia: 'Storia',
+    publi24: 'Publi24',
+    imobiliare: 'Imobiliare',
+    user: 'rentMe',
+};
 
 const ROOMS_MAP = {
     ONE: 1, TWO: 2, THREE: 3, FOUR: 4, FIVE: 5,
@@ -29,11 +35,12 @@ export default function Card({ listing }) {
         title,
         price,
         location,
+        address,
+        city,
         imageUrls = [],
         source,
         squareMeters,
         date,
-        // optional
         roomsNumber,
         floorNumber,
         tags = [],
@@ -62,6 +69,8 @@ export default function Card({ listing }) {
     };
 
     const hasMeta = squareMeters || rooms || floor != null;
+    const displayLocation = location || address || city;
+    const badgeLabel = sources[source] || source;
 
     return (
         <div className={styles.card} onClick={handleOpen}>
@@ -80,7 +89,7 @@ export default function Card({ listing }) {
                 )}
 
                 <span className={`${styles.badge} ${styles[`badge_${source}`] || ''}`}>
-                    {sources[source] || source}
+                    {badgeLabel}
                 </span>
 
                 {amount && (
@@ -95,7 +104,9 @@ export default function Card({ listing }) {
 
             <div className={styles.body}>
                 <p className={styles.title}>{title}</p>
-                <p className={styles.location}>📍 {location}</p>
+                {displayLocation && (
+                    <p className={styles.location}>📍 {displayLocation}</p>
+                )}
 
                 {normalizedTags.length > 0 && (
                     <div className={styles.tags}>

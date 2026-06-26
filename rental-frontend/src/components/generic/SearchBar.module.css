@@ -1,40 +1,102 @@
+.searchWrapper {
+  margin: 0 24px 20px;
+}
+
 .searchBar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  
-    background: #12121a;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-  
-    padding: 10px 16px;
-    margin: 0 24px 20px;
-  
-    transition: border-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background: #12121a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+
+  padding: 10px 16px;
+
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.searchBar:focus-within {
+  border-color: #c8ff57;
+}
+
+.searchBarError {
+  border-color: rgba(255, 107, 107, 0.55);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.08);
+}
+
+.searchBarError:focus-within {
+  border-color: rgba(255, 107, 107, 0.75);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.12);
+}
+
+.icon {
+  color: #7a7990;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.searchBar input {
+  background: none;
+  border: none;
+  outline: none;
+
+  color: #f0eff8;
+  font-size: 14px;
+  font-family: "Outfit", sans-serif;
+
+  flex: 1;
+}
+
+.searchBar input::placeholder {
+  color: #7a7990;
+}
+
+.errorMessage {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  margin: 10px 4px 0;
+  padding: 10px 12px;
+
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.18);
+  border-radius: 10px;
+
+  color: #ffb4b4;
+  font-size: 13px;
+  line-height: 1.45;
+  font-family: "Outfit", sans-serif;
+
+  animation: fadeSlideIn 0.2s ease;
+}
+
+.errorIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+
+  border-radius: 50%;
+  background: rgba(255, 107, 107, 0.2);
+  color: #ff8a8a;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
   }
-  
-  .searchBar:focus-within {
-    border-color: #c8ff57;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .icon {
-    color: #7a7990;
-    font-size: 15px;
-    flex-shrink: 0;
-  }
-  
-  .searchBar input {
-    background: none;
-    border: none;
-    outline: none;
-  
-    color: #f0eff8;
-    font-size: 14px;
-    font-family: "Outfit", sans-serif;
-  
-    flex: 1;
-  }
-  
-  .searchBar input::placeholder {
-    color: #7a7990;
-  }
+}

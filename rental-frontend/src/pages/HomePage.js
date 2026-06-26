@@ -8,45 +8,38 @@ import StatsRow from "../components/homepage/StatsRow"
 import { useAppContext } from "../components/context/AppContext"
 import { DetailViewModal } from "../modals/DetailViewModal"
 import { DetailViewModalSkeleton } from "../modals/DetailViewSkeleton"
-import CardSkeleton from "../components/homepage/CardSkeleton"
-import wrappedStyle from "../components/homepage/CardsWrapper.module.css"
+import CitySearchLoader from "../components/homepage/CitySearchLoader"
 import StatsRowSkeleton from "../components/homepage/StatsRowSkeleton"
+import { abortPendingListingsFetch, fetchListings, isAbortError } from "../api/listings"
+
 export const HomePage = () => {
     const [loadingCards, setLoadingCards] = useState(true);
 
-    const { rentings, setRentings, city, rentingDetails, shouldShowDetailsModal } = useAppContext();
+    const { rentings, setRentings, city, filters, rentingDetails, shouldShowDetailsModal } = useAppContext();
 
     useEffect(() => {
-        const getRentings = async () => {
-            if (window.location.href.includes('localhost')) {
+        const loadRentings = async () => {
+            setLoadingCards(true);
 
-            }
+            try {
+                const hasStoredFilters = !!localStorage.getItem('filters');
+                const data = await fetchListings(city, hasStoredFilters ? filters : null);
 
-            if (!!localStorage.getItem("filters")) {
-                const settingsFromLocalStorage = localStorage.getItem("filters");
-                const parsedSettings = JSON.parse(settingsFromLocalStorage);
+                if (data === null) return;
 
-                Object.keys(parsedSettings).forEach((key) => {
-                    if (parsedSettings[key] === 'Any' || parsedSettings[key] === 'All' || parsedSettings[key] === 'news') {
-                        delete parsedSettings[key]
-                    }
-                })
-
-                const settingsAsParams = new URLSearchParams(parsedSettings).toString();
-
-                const fetchRentings = await fetch(`http://localhost:9000/listings/${city}?${settingsAsParams}`)
-                const rents = await fetchRentings.json();
-                setRentings(rents);
+                setRentings(data);
                 setLoadingCards(false);
-            } else {
-                const fetchRentings = await fetch(`http://localhost:9000/listings/${city}?forma=proprietar&maxPrice=450`);
-                const rentingsJson = await fetchRentings.json();
-                setRentings(rentingsJson);
+            } catch (error) {
+                if (!isAbortError(error)) {
+                    console.error('Failed to load listings:', error);
+                }
                 setLoadingCards(false);
             }
+        };
 
-        }
-        getRentings();
+        loadRentings();
+
+        return () => abortPendingListingsFetch();
     }, [city, setRentings])
 
     return (
@@ -62,11 +55,7 @@ export const HomePage = () => {
             <Filters setLoadingCards={setLoadingCards} />
 
             {loadingCards ? (
-                <div className={wrappedStyle.grid}>
-                    {Array.from({ length: 6 }).map((_, i) => (
-                        <CardSkeleton key={i} />
-                    ))}
-                </div>
+                <CitySearchLoader city={city} />
             ) : (
                 rentings && <CardsWrapper rentings={rentings} />
             )}

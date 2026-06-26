@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// Path-only URLs (/reset-password?token=) → /#/reset-password?token= for HashRouter.
 (function pathToHash() {
   const { hash, pathname, search } = window.location;
   if (hash.length > 1 && hash.startsWith('#/')) return;

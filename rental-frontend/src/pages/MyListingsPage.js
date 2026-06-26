@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import Navbar from "../components/homepage/Navbar";
+import { ImageCarousel } from "../components/generic/ImageCarousel";
 import { useAppContext } from "../components/context/AppContext";
 import styles from "./MyListingsPage.module.css";
 
@@ -22,8 +23,50 @@ function getErrorMessage(data, fallback) {
     return data?.message || data?.error || fallback;
 }
 
+function getAdvertisementImageUrls(item) {
+    if (!Array.isArray(item?.imageUrls)) return [];
+    return item.imageUrls.map((url) => String(url).trim()).filter(Boolean);
+}
+
+function AdvertisementPhotos({ imageUrls, title }) {
+    if (!imageUrls.length) {
+        return (
+            <div className={styles.cardMedia} aria-hidden>
+                <div className={styles.cardPhotoPlaceholder}>No photos yet</div>
+            </div>
+        );
+    }
+
+    if (imageUrls.length === 1) {
+        return (
+            <div className={styles.cardMedia}>
+                <img
+                    src={imageUrls[0]}
+                    alt={title ? `Photo of ${title}` : "Listing photo"}
+                    className={styles.cardPhoto}
+                    loading="lazy"
+                    onError={(event) => {
+                        event.currentTarget.style.display = "none";
+                        const placeholder = event.currentTarget.nextElementSibling;
+                        if (placeholder) placeholder.hidden = false;
+                    }}
+                />
+                <div className={styles.cardPhotoPlaceholder} hidden>
+                    Photo unavailable
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className={`${styles.cardMedia} ${styles.cardMediaCarousel}`}>
+            <ImageCarousel images={imageUrls} />
+        </div>
+    );
+}
+
 export function MyListingsPage() {
-    const { authUser } = useAppContext();
+    const { authUser, logout, openAuthModal } = useAppContext();
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
@@ -53,6 +96,11 @@ export function MyListingsPage() {
             const data = await response.json().catch(() => ([]));
 
             if (!response.ok) {
+                if (response.status === 401) {
+                    logout();
+                    openAuthModal("login");
+                    throw new Error("Your session expired. Please sign in again.");
+                }
                 throw new Error(getErrorMessage(data, "Could not load your advertisements."));
             }
 
@@ -352,8 +400,14 @@ export function MyListingsPage() {
                         <p className={styles.emptyState}>You have no advertisements yet.</p>
                     ) : (
                         <div className={styles.list}>
-                            {items.map((item) => (
+                            {items.map((item) => {
+                                const imageUrls = getAdvertisementImageUrls(item);
+                                return (
                                 <article key={item.id} className={styles.card}>
+                                    <AdvertisementPhotos
+                                        imageUrls={imageUrls}
+                                        title={item.title}
+                                    />
                                     <div className={styles.cardHeader}>
                                         <div>
                                             <h3 className={styles.cardTitle}>{item.title}</h3>
@@ -387,7 +441,8 @@ export function MyListingsPage() {
                                         </button>
                                     </div>
                                 </article>
-                            ))}
+                            );
+                            })}
                         </div>
                     )}
                 </section>

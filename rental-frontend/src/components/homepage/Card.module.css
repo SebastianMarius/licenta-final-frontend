@@ -19,7 +19,6 @@
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
 }
  
-/* ── Image ─────────────────────────────────────── */
  
 .imgWrapper {
   height: 170px;
@@ -51,7 +50,6 @@
   opacity: 0.3;
 }
  
-/* ── Source badge ───────────────────────────────── */
  
 .badge {
   position: absolute;
@@ -89,8 +87,13 @@
   color: #00e676;
   border: 1px solid rgba(0, 180, 100, 0.25);
 }
+
+.badge_user {
+  background: rgba(139, 92, 246, 0.15);
+  color: #c4b5fd;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+}
  
-/* ── PF badge ───────────────────────────────────── */
  
 .pfBadge {
   position: absolute;
@@ -108,7 +111,6 @@
   font-family: 'Outfit', sans-serif;
 }
  
-/* ── Price tag ──────────────────────────────────── */
  
 .priceTag {
   position: absolute;
@@ -133,7 +135,6 @@
   font-size: 15px;
 }
  
-/* ── Body ───────────────────────────────────────── */
  
 .body {
   padding: 13px 14px 14px;
@@ -161,7 +162,6 @@
   margin: 0 0 10px;
 }
  
-/* ── Tags ───────────────────────────────────────── */
  
 .tags {
   display: flex;
@@ -179,9 +179,7 @@
   border-radius: 10px;
   font-weight: 500;
 }
- 
-/* ── Meta ───────────────────────────────────────── */
- 
+  
 .meta {
   display: flex;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -213,9 +211,7 @@
   color: #7a7990;
   font-weight: 400;
 }
- 
-/* ── Footer ─────────────────────────────────────── */
- 
+  
 .footer {
   display: flex;
   justify-content: space-between;

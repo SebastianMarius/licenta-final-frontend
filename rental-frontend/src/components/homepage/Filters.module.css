@@ -8,8 +8,6 @@
     padding: 0px 24px 0px 24px;
   }
    
-  /* ── Chip ───────────────────────────────────────── */
-   
   .chip {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -37,7 +35,6 @@
     font-weight: 600;
   }
    
-  /* ── Divider between groups ─────────────────────── */
    
   .divider {
     width: 1px;
@@ -47,7 +44,6 @@
     flex-shrink: 0;
   }
    
-  /* ── Sort buttons ───────────────────────────────── */
    
   .sort {
     margin-left: auto;

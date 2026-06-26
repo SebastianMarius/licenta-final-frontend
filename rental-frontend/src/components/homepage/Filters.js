@@ -1,5 +1,6 @@
 import styles from './Filters.module.css';
 import { useAppContext } from '../context/AppContext';
+import { fetchListings, isAbortError } from '../../api/listings';
 
 const SOURCES = ['All', 'olx', 'storia', 'publi24', 'imobiliare'];
 const SRC_LBL = { olx: 'OLX', storia: 'Storia', publi24: 'Publi24', imobiliare: 'Imobiliare' };
@@ -23,35 +24,19 @@ export default function Filters({ setLoadingCards }) {
         localStorage.setItem('filters', JSON.stringify(newFilters))
         setFilters(newFilters);
 
-        const params = new URLSearchParams();
+        try {
+            const data = await fetchListings(city, newFilters);
 
-        if (newFilters.forma === "Proprietar") {
-            params.append("forma", "proprietar");
+            if (data === null) return;
+
+            setRentings(data);
+            setLoadingCards(false);
+        } catch (error) {
+            if (!isAbortError(error)) {
+                console.error('Failed to load listings:', error);
+            }
+            setLoadingCards(false);
         }
-
-        if (newFilters.maxPrice && newFilters.maxPrice !== "Any") {
-            params.append("maxPrice", newFilters.maxPrice);
-        }
-
-        if (newFilters.rentSource && newFilters.rentSource !== "All") {
-            params.append('rentSource', newFilters.rentSource)
-        }
-
-        if (newFilters.minRoms && newFilters.minRoms !== "Any") {
-            params.append('minRoms', newFilters.minRoms)
-        }
-
-        if (newFilters.sortingMethod && newFilters.sortingMethod !== "newest") {
-            params.append('sortingMethod', newFilters.sortingMethod)
-        }
-
-        const res = await fetch(
-            `http://localhost:9000/listings/${city}?${params.toString()}`
-        );
-
-        const data = await res.json();
-        setRentings(data);
-        setLoadingCards(false);
     };
 
     return (
@@ -62,7 +47,7 @@ export default function Filters({ setLoadingCards }) {
                     className={`${styles.chip} ${filters.forma === forma ? styles.chipOn : ''}`}
                     onClick={() => genericFilterUpdate('forma', forma)}
                 >
-                    {forma === 'Any' ? 'Proprietar si Agentie' : `${forma}`}
+                    {forma === 'Any' ? 'Owner and agency' : `Owner`}
                 </button>
             ))}
 
@@ -103,7 +88,6 @@ export default function Filters({ setLoadingCards }) {
             ))}
 
 
-            {/* Sort — pushed to the right */}
             <div className={styles.sort}>
                 {SORTS.map(({ key, label }) => (
                     <button

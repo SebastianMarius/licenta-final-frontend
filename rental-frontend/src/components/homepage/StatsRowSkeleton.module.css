@@ -22,7 +22,6 @@
     box-sizing: border-box;
 }
  
-/* shared shimmer block */
 .value,
 .label {
     display: block;
@@ -40,7 +39,6 @@
 .value {
     height: 26px;
     margin-bottom: 7px;
-    /* width is set inline per stat so each bar is a different length */
 }
  
 .label {
@@ -49,7 +47,6 @@
     animation-delay: 0.08s;
 }
  
-/* stagger each card's shimmer slightly */
 .stat:nth-child(1) .value  { animation-delay: 0s;    }
 .stat:nth-child(1) .label  { animation-delay: 0.08s; }
 .stat:nth-child(2) .value  { animation-delay: 0.12s; }

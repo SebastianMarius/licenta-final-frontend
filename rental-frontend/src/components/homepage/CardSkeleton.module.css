@@ -7,7 +7,6 @@
     100% { background-position:  600px 0; }
 }
 
-/* Shared shimmer mixin — applied to every skeleton element */
 .card *[class] {
     background-image: linear-gradient(
         90deg,
@@ -20,7 +19,6 @@
     border-radius: 6px;
 }
 
-/* ── Card shell ─────────────────────────────────── */
 
 .card {
     background: #12121a;
@@ -29,11 +27,9 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    /* stagger animation per card based on DOM order */
     animation: none;
 }
 
-/* ── Image area ─────────────────────────────────── */
 
 .imgWrapper {
     height: 170px;
@@ -43,7 +39,6 @@
     flex-shrink: 0;
 }
 
-/* Full image shimmer */
 .shimmer {
     position: absolute;
     inset: 0;
@@ -58,7 +53,6 @@
     animation: shimmer 1.6s ease-in-out infinite !important;
 }
 
-/* Badge pill */
 .badge {
     position: absolute;
     top: 10px;
@@ -69,7 +63,6 @@
     background: rgba(255, 255, 255, 0.06) !important;
 }
 
-/* Price tag bottom-right */
 .priceTag {
     position: absolute;
     bottom: 10px;
@@ -78,7 +71,6 @@
     height: 28px;
     border-radius: 10px !important;
     background: rgba(255, 255, 255, 0.05) !important;
-    /* override the global shimmer to use a slightly brighter pulse */
     background-image: linear-gradient(
         90deg,
         rgba(255, 255, 255, 0.04) 0px,
@@ -87,12 +79,11 @@
     ) !important;
 }
 
-/* Hide the inner span — priceTag itself is the block */
+
 .priceVal {
     display: none;
 }
 
-/* ── Body ───────────────────────────────────────── */
 
 .body {
     padding: 13px 14px 14px;
@@ -102,7 +93,6 @@
     gap: 0;
 }
 
-/* Generic line block */
 .line {
     height: 12px;
     background: rgba(255, 255, 255, 0.05);
@@ -125,13 +115,11 @@
     margin-bottom: 10px;
 }
 
-/* ── Tags ───────────────────────────────────────── */
 
 .tags {
     display: flex;
     gap: 4px;
     margin-bottom: 9px;
-    /* tags row itself has no shimmer — children do */
     background: transparent !important;
     animation: none !important;
 }
@@ -153,7 +141,6 @@
     animation-delay: 0.15s;
 }
 
-/* ── Meta ───────────────────────────────────────── */
 
 .meta {
     display: flex;
@@ -161,7 +148,6 @@
     padding-top: 9px;
     margin-top: auto;
     margin-bottom: 8px;
-    /* meta row: no shimmer on the container */
     background: transparent !important;
     animation: none !important;
 }
@@ -191,7 +177,6 @@
     animation-delay: 0.05s;
 }
 
-/* ── Footer ─────────────────────────────────────── */
 
 .footer {
     display: flex;
@@ -200,7 +185,6 @@
     padding-top: 8px;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     margin-top: auto;
-    /* no shimmer on footer container */
     background: transparent !important;
     animation: none !important;
 }
